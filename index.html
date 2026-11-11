@@ -1,37 +1,11 @@
-import os
-
-def generar_tarjeta():
-    print("========================================")
-    print("   SISTEMA DE GENERACION DE TARJETAS    ")
-    print("========================================")
-    print("Selecciona el modelo de tarjeta:")
-    print("1. Clasico / Minimalista (Torta y diseño elegante)")
-    print("2. Personaje Animado / Estilo tierno (Oso o ardilla de moda)")
-    print("3. Estilo 3D / Boutique con foto opcional")
-    
-    opcion = input("\nIngresa el numero del modelo (1, 2 o 3): ")
-    
-    # Recopilar datos del cliente
-    nombre_homenajeado = input("Nombre del cumpleañero(a): ")
-    mensaje_personalizado = input("Mensaje especial o dedicatoria: ")
-    
-    # Opciones adicionales
-    quiere_musica = input("¿Desea agregar musica de fondo automatica? (s/n): ").lower() == 's'
-    quiere_foto = input("¿El cliente envio foto para la tarjeta? (s/n): ").lower() == 's'
-    
-    ruta_foto = ""
-    if quiere_foto:
-        ruta_foto = input("Ingresa el nombre del archivo de la foto (ej: cliente.jpg): ")
-
-    # Construccion dinamica del HTML segun la seleccion
-    html_contenido = f"""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños, {nombre_homenajeado}!</title>
+    <title>¡Feliz Cumpleaños, eleazar!</title>
     <style>
-        body {{
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1f1c2c, #928dab);
             color: #ffffff;
@@ -41,8 +15,8 @@ def generar_tarjeta():
             height: 100vh;
             margin: 0;
             text-align: center;
-        }}
-        .tarjeta-container {{
+        }
+        .tarjeta-container {
             background: rgba(255, 255, 255, 0.1);
             padding: 30px;
             border-radius: 20px;
@@ -51,61 +25,49 @@ def generar_tarjeta():
             max-width: 400px;
             width: 90%;
             border: 1px solid rgba(255, 255, 255, 0.18);
-        }}
-        h1 {{
+        }
+        h1 {
             font-size: 26px;
             color: #ffd700;
             margin-bottom: 10px;
-        }}
-        p {{
+        }
+        p {
             font-size: 16px;
             line-height: 1.5;
             color: #f1f1f1;
-        }}
-        .foto-marco {{
+        }
+        .foto-marco {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid #ffd700;
             margin: 15px auto;
-            display: { 'block' if quiere_foto else 'none' };
-        }}
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="tarjeta-container">
         <!-- Elemento visual segun modelo -->
         <div style="font-size: 50px; margin-bottom: 10px;">
-            {'🎂' if opcion == '1' else ('🐻' if opcion == '2' else '🎁')}
+            🐻
         </div>
         
-        <h1>¡Feliz Cumpleaños, {nombre_homenajeado}!</h1>
+        <h1>¡Feliz Cumpleaños, eleazar!</h1>
         
         <!-- Foto opcional -->
-        {f'<img src="{ruta_foto}" class="foto-marco" alt="Foto del homenajeado">' if quiere_foto else ''}
         
-        <p>{mensaje_personalizado}</p>
+        
+        <p>felicidades</p>
         
         <!-- Audio de fondo opcional -->
-        {'''
+        
         <audio autoplay loop>
             <source src="https://www.bensound.com/bensound-music/bensound-ukulele.mp3" type="audio/mpeg">
             Tu navegador no soporta audio.
         </audio>
-        ''' if quiere_musica else ''}
+        
     </div>
 </body>
 </html>
-"""
-
-    # Guardar el archivo generado
-    nombre_archivo = "index.html"
-    with open(nombre_archivo, "w", encoding="utf-8") as archivo:
-        archivo.write(html_contenido)
-        
-    print(f"\n[¡Exito!] Tarjeta generada correctamente como '{nombre_archivo}'.")
-    print("Ya puedes subir este archivo a tu repositorio de GitHub ('tarjetas') para actualizar tu enlace web en vivo.")
-
-if __name__ == "__main__":
-    generar_tarjeta()
